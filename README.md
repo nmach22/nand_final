@@ -1,1 +1,2 @@
-# nand_final
+# nand 2 tetris
+# final project
