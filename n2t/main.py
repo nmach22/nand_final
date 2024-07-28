@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 from typing import Iterable
 
 from n2t.HackComputer import HackComputer
@@ -31,9 +32,13 @@ def main() -> None:
     json_output = {
         "RAM": ram_state
     }
-    json_file = file_path.replace('.hack', '.json')
+    file_suffix = "_generated.hack" if file_path.endswith("_generated.hack") else ".hack"
+    json_file = file_path.replace(file_suffix, '.json')
     with open(json_file, 'w') as f:
         json.dump(json_output, f, indent=4)
+
+    if file_path.endswith('_generated.hack'):
+        os.remove(file_path)
 
 
 if __name__ == "__main__":
@@ -51,7 +56,7 @@ def parse_asm(file_path: str) -> Iterable[str]:
 
 
 def write_hack(file_path: str, hack_instructions: Iterable[str]) -> str:
-    hack_file = file_path.replace('.asm', '.hack')
+    hack_file = file_path.replace('.asm', '_generated.hack')
     with open(hack_file, 'w') as f:
         for instruction in hack_instructions:
             f.write(instruction + '\n')
