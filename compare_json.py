@@ -1,8 +1,9 @@
 import json
+import pathlib
 from typing import Any, Dict, cast
 
 
-def load_json(file_path: str) -> Dict[str, Any]:
+def load_json(file_path: pathlib.Path) -> Dict[str, Any]:
     with open(file_path, 'r') as file:
         return cast(Dict[str, Any], json.load(file))
 
@@ -14,7 +15,7 @@ def is_subset(superset: Dict[str, Any], subset: Dict[str, Any]) -> bool:
     return True
 
 
-def compare_json_files(file1: str, file2: str) -> bool:
+def compare_json_files(file1: pathlib.Path, file2: pathlib.Path) -> bool:
     json1 = load_json(file1)
     json2 = load_json(file2)
 

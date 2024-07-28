@@ -1,7 +1,7 @@
 import argparse
 import json
-
 from typing import Iterable
+
 from n2t.HackComputer import HackComputer
 from n2t.home_works.assembler import Assembler
 
